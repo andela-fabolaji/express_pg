@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "db:setup": "npm run migrate && npm run seed",
-    "migrate": "npm run flush && sequelize db:migrate",
+    "db:setup": "npm run flush && npm run migrate && npm run seed",
     "flush": "sequelize db:migrate:undo:all",
+    "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all"
   },
   "keywords": [],
@@ -20,6 +20,7 @@
     "dotenv": "^6.2.0",
     "errorhandler": "^1.5.0",
     "express": "^4.16.4",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.0",
     "method-override": "^3.0.0",
     "morgan": "^1.9.1",

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, { tableName: 'meals' });
 
   meal.associate = function(models) {
-    this.belongsTo(models.User, { foreignKey: 'catererId' });
+    this.belongsTo(models.User, { foreignKey: 'catererId', constraint: false });
   };
 
   return meal;
