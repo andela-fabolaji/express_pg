@@ -1,0 +1,19 @@
+{
+  "development": {
+    "username": "abolajifemi",
+    "password": null,
+    "database": "express_pg_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "abolajifemi",
+    "password": null,
+    "database": "express_pg_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}

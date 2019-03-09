@@ -1,0 +1,31 @@
+{
+  "name": "express_pg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "db:setup": "npm run migrate && npm run seed",
+    "migrate": "npm run flush && sequelize db:migrate",
+    "flush": "sequelize db:migrate:undo:all",
+    "seed": "sequelize db:seed:all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "errorhandler": "^1.5.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
+    "method-override": "^3.0.0",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
+    "pg": "^7.8.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.43.0"
+  }
+}
