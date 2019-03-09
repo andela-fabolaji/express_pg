@@ -2,13 +2,12 @@ const { hash } = require('../../utils/bcrypt');
 const faker = require('faker');
 
 function fakeUsers(num) {
-  const users = [];
-  for (let i = 0; i < num; i++) {
+  return Array(num).fill({}).map(_ => {
     const firstName = faker.name.firstName();
     const lastName = faker.name.lastName();
     const email = `${firstName}.${lastName}@fakemail.com`;
-    
-    users.push({
+
+    return {
       firstName,
       lastName,
       email,
@@ -16,9 +15,8 @@ function fakeUsers(num) {
       role: 'caterer',
       createdAt: new Date(),
       updatedAt: new Date()
-    })
-  }
-  return users;
+    };
+  });
 }
 
 module.exports = {
@@ -31,7 +29,7 @@ module.exports = {
     role: 'admin',
     createdAt: new Date(),
     updatedAt: new Date()
-   }, ...fakeUsers(10)], {});
+   }, ...fakeUsers(5)], {});
   },
 
   down: (queryInterface, Sequelize) => {
