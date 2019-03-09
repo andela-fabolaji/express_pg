@@ -5,9 +5,8 @@ const { completeAuth } = require('../utils/tokens');
 class AuthController {
   static async login(req, res) {
     try {
-      const user = await User.findOne({
-        where: { email: req.body.email },
-        attributes: { exclude: ['password'] }
+      let user = await User.findOne({
+        where: { email: req.body.email }
       });
       let statusCode = 200;
       let response = {
@@ -18,7 +17,14 @@ class AuthController {
         statusCode = 404;
         response.msg = 'User not found';
       } else {
-        response.data = completeAuth(user);
+        user = user.get({ plain: true });
+        if (!compare(req.body.password, user.password)) {
+          statusCode = 403;
+          response.msg = 'Incorrect password.';
+        } else {
+          delete user.password;
+          response.data = completeAuth(user);
+        }
       }
 
       res.status(statusCode).json(response);

@@ -13,7 +13,6 @@ class UserController {
       user = user.get({ plain: true });
       delete user.password;
       
-      console.log('user baddas', user);
       res.status(201).json({
         data: completeAuth(user)
       });

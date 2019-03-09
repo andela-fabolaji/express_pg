@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   }, { tableName: 'users' });
   
   user.associate = function(models) {
-    this.hasMany(models.Meal, { foreignKey: 'userId' });
+    this.hasMany(models.Meal, { foreignKey: 'catererId' });
   };
 
   return user;
