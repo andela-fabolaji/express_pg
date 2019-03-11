@@ -1,31 +1,26 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('documents', {
+    return queryInterface.createTable('orders', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
+      quantity: {
+        type: Sequelize.INTEGER
       },
-      description: {
-        type: Sequelize.STRING
-      },
-      ownerId: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
           key: 'id',
-          as: 'ownerId'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+          as: 'userId'
+        }
       },
-      accessLevel: {
-        type: Sequelize.STRING
+      fulfilled: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +33,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('documents');
+    return queryInterface.dropTable('orders');
   }
 };

@@ -1,4 +1,4 @@
-const { User } = require('../db/models/index');
+const { Sequelize, User, Role } = require('../db/models/index');
 const { hash, compare } = require('../utils/bcrypt');
 const { completeAuth } = require('../utils/tokens');
 
@@ -6,7 +6,10 @@ class AuthController {
   static async login(req, res) {
     try {
       let user = await User.findOne({
-        where: { email: req.body.email }
+        where: { email: req.body.email },
+        include: [{
+          model: Role
+        }]
       });
       let statusCode = 200;
       let response = {

@@ -1,15 +1,10 @@
 const { User } = require('../db/models');
-const { hash } = require('../utils/bcrypt');
 const { completeAuth } = require('../utils/tokens');
 
 class UserController {
   static async create(req, res) {
-    const payload = {
-      ...req.body,
-      password: hash(req.body.password)
-    };
     try {
-      let user = await User.create(payload);
+      let user = await User.create(req.body);
       user = user.get({ plain: true });
       delete user.password;
       

@@ -2,8 +2,13 @@ const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 
 const sign = (userPayload) => {
-  const { id, email, role } = userPayload;
-  return jwt.sign({ id, email, role }, SECRET, { expiresIn: '24h' });
+  const { id, email, Role: role } = userPayload;
+  return jwt.sign({
+    id,
+    email,
+    roleId: role.id,
+    permissions: role.permissions
+  }, SECRET, { expiresIn: '24h' });
 };
 
 const completeAuth = (user) => {
